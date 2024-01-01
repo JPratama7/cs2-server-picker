@@ -63,20 +63,20 @@ jobs:
     - name: Install .NET Core
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 4.7.2
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: dotnet build --configuration ${{matrix.configuration}}
 
     - name: Enter Folder
-      run: cd CS2ServerPicker\bin\Release
+      run: cd CS2ServerPicker\bin\${{matrix.configuration}}
 
     - name: Zip Folder
-      run: tar -a -c -f CS2ServerPicker.zip *.*
+      run: tar -a -c -f CS2ServerPicker-${{matrix.configuration}}.zip *.*
 
     - uses: ncipollo/release-action@v1.12.0
       with:
