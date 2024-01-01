@@ -83,5 +83,5 @@ jobs:
         allowUpdates: true
         replacesArtifacts: true
         tag: "latest"
-        artifacts: "./CS2ServerPicker.zip"
+        artifacts: "./CS2ServerPicker-${{matrix.configuration}}.zip"
         token: ${{ secrets.GITHUB_TOKEN }}
